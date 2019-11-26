@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BerlinClock.Classes
 {
@@ -29,6 +30,8 @@ namespace BerlinClock.Classes
         public void SetStates(int timeInMiliseconds)
         {
             var lastIndexToActivate = (timeInMiliseconds / Settings.PeriodTimeMiliseconds) % Settings.ModuloDivisor;
+
+            Pieces = Pieces.OrderByDescending(x => x.Index).ToList();
             foreach (IRowPiece piece in Pieces)
             {
                 if (piece.Index <= lastIndexToActivate)

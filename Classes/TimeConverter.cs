@@ -1,6 +1,7 @@
 ﻿using BerlinClock.Classes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BerlinClock
 {
@@ -27,6 +28,7 @@ namespace BerlinClock
 
             int miliseconds = (int)timespan.TotalMilliseconds;
 
+            Rows = Rows.OrderByDescending(x => x.Level).ToList();
             foreach (IRow row in Rows)
             {
                 row.SetStates(miliseconds);
